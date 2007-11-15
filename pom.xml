@@ -40,4 +40,22 @@
     </plugins>
   </build>
 
+  <scm>
+    <connection>scm:svn:http://svn.nuxeo.org/nuxeo/org.nuxeo.build/nuxeo-apt-extensions/trunk</connection>
+    <developerConnection>scm:svn:https://svn.nuxeo.org/nuxeo/org.nuxeo.build/nuxeo-apt-extensions/trunk</developerConnection>
+    <url>http://svn.nuxeo.org/trac/nuxeo/browser/org.nuxeo.build/nuxeo-apt-extensions/trunk</url>
+  </scm>
+
+
+  <distributionManagement>
+    <repository>
+      <id>nuxeo_release</id>
+      <url>scp://tamise.nuxeo.com/home/archiva/repositories/nuxeo_release</url>
+    </repository>
+    <snapshotRepository>
+      <id>nuxeo_snapshot</id>
+      <url>scp://tamise.nuxeo.com/home/archiva/repositories/nuxeo_snapshot</url>
+    </snapshotRepository>
+  </distributionManagement> 				    
+
 </project>
