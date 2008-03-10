@@ -135,6 +135,14 @@ public class ServiceBindingsProcessorFactory implements AnnotationProcessorFacto
                                     String key = ((InterfaceType)av.getValue()).getDeclaration().getQualifiedName();
                                     //log.printNotice("Found Service Binding: "+key+" => "+value);
                                     writer.println(key+"="+value);
+                                    // write also any super interface that is not part of java runtime.
+                                    Collection<InterfaceType> superItfs = ((InterfaceType)av.getValue()).getSuperinterfaces();
+                                    for (InterfaceType superItf : superItfs) {
+                                        key = superItf.getDeclaration().getQualifiedName();
+                                        if (!key.startsWith("java")) {
+                                            writer.println(key+"="+value);
+                                        }
+                                    }
                                 }
                             } else {
                                 log.printWarning("javax.ejb.Remote annotation without parameters on class "+declaration.getSimpleName());
