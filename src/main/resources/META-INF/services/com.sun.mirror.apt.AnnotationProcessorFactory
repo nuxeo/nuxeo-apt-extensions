@@ -1,2 +1,2 @@
 org.nuxeo.build.apt.ServiceBindingsProcessorFactory
-org.nuxeo.build.apt.CoreAnnotationsProcessorFactory
+org.nuxeo.build.apt.AnnotationsCacheBuilder
