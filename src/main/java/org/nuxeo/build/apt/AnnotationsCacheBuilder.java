@@ -60,7 +60,7 @@ public class AnnotationsCacheBuilder implements AnnotationProcessorFactory {
     private static final Set<String> supportedAnnotations = new HashSet<String>(
             Arrays.asList("org.nuxeo.ecm.webengine.rest.annotations.WebObject", 
                     "org.nuxeo.ecm.webengine.rest.annotations.WebAction", 
-                    "org.nuxeo.ecm.webengine.rest.annotations.WebApp",
+                    "org.nuxeo.ecm.webengine.rest.annotations.WebProfile",
                     "javax.ws.rs.Path"));
 
     private static final String EOL = System.getProperty("line.separator");
@@ -93,13 +93,9 @@ public class AnnotationsCacheBuilder implements AnnotationProcessorFactory {
         private final AnnotationProcessorEnvironment env;
         protected PrintWriter writer;
         protected StringBuilder buf;
-        AnnotationTypeDeclaration typeAnno;
-        AnnotationTypeDeclaration actionAnno;
 
         Processor(AnnotationProcessorEnvironment env) {
             this.env = env;
-            typeAnno = (AnnotationTypeDeclaration) env.getTypeDeclaration("org.nuxeo.ecm.webengine.rest.annotations.Type");
-            actionAnno = (AnnotationTypeDeclaration) env.getTypeDeclaration("org.nuxeo.ecm.webengine.rest.annotations.Action");
         }
 
         class Visitor extends SimpleDeclarationVisitor {
