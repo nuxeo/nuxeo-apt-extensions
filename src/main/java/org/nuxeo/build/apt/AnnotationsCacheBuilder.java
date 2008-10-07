@@ -58,9 +58,11 @@ public class AnnotationsCacheBuilder implements AnnotationProcessorFactory {
 
     // Process any set of annotations
     private static final Set<String> supportedAnnotations = new HashSet<String>(
-            Arrays.asList("org.nuxeo.ecm.webengine.rest.annotations.WebObject", 
-                    "org.nuxeo.ecm.webengine.rest.annotations.WebAction", 
-                    "org.nuxeo.ecm.webengine.rest.annotations.WebProfile",
+            Arrays.asList(
+                    "org.nuxeo.ecm.webengine.model.WebObject", 
+                    "org.nuxeo.ecm.webengine.model.WebService", 
+                    "org.nuxeo.ecm.webengine.model.WebModule",
+                    "org.nuxeo.ecm.webengine.model.WebView",
                     "javax.ws.rs.Path"));
 
     private static final String EOL = System.getProperty("line.separator");
@@ -69,6 +71,16 @@ public class AnnotationsCacheBuilder implements AnnotationProcessorFactory {
     private static final Collection<String> supportedOptions = emptySet();
 
     public Collection<String> supportedAnnotationTypes() {
+//        String str = System.getProperty("org.nuxeo.build.annotations");
+//        if (str != null) {
+//            String[] ar = str.split(":");
+//            HashSet<String> result = new HashSet<String>(Arrays.asList(ar));
+//            System.out.println("@@@>>>>>>>>>>>>> "+result);
+//            return result;
+//        } else {
+//            System.out.println("@@@>>>>>>>>>>>>> EMPTY");
+//          return emptySet();  
+//        }
         return supportedAnnotations;
     }
 
@@ -77,6 +89,8 @@ public class AnnotationsCacheBuilder implements AnnotationProcessorFactory {
     }
     
 
+    protected AnnotationProcessorEnvironment env; 
+    
     public AnnotationProcessor getProcessorFor(
             Set<AnnotationTypeDeclaration> atds,
             AnnotationProcessorEnvironment env) {
