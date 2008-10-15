@@ -60,7 +60,7 @@ public class AnnotationsCacheBuilder implements AnnotationProcessorFactory {
     private static final Set<String> supportedAnnotations = new HashSet<String>(
             Arrays.asList(
                     "org.nuxeo.ecm.webengine.model.WebObject", 
-                    "org.nuxeo.ecm.webengine.model.WebService", 
+                    "org.nuxeo.ecm.webengine.model.WebAdapter", 
                     "org.nuxeo.ecm.webengine.model.WebModule",
                     "org.nuxeo.ecm.webengine.model.WebView",
                     "javax.ws.rs.Path"));
