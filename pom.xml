@@ -1,31 +1,38 @@
 <?xml version="1.0"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <artifactId>nuxeo-tools-parent</artifactId>
+    <groupId>org.nuxeo.tools</groupId>
+    <version>2.0</version>
+  </parent>
 
   <groupId>org.nuxeo.build</groupId>
   <artifactId>nuxeo-apt-extensions</artifactId>
   <version>1.1-SNAPSHOT</version>
   <name>APT Extensions</name>
   <description>Nuxeo Build: APT Extensions</description>
-  
+
   <profiles>
     <profile>
       <!-- Not needed on Mac OS X since classes.jar already has the tools in it. -->
       <id>default-tools.jar</id>
       <activation>
-	<property>
-	  <name>java.vendor</name>
-	  <value>Sun Microsystems Inc.</value>
-	</property>
+        <property>
+          <name>java.vendor</name>
+          <value>Sun Microsystems Inc.</value>
+        </property>
       </activation>
       <dependencies>
-	<dependency>
-	  <groupId>sun.jdk</groupId>
-	  <artifactId>tools</artifactId>
-	  <version>1.5.0</version>
-	  <scope>system</scope>
-	  <systemPath>${java.home}/../lib/tools.jar</systemPath>
-	</dependency>
+        <dependency>
+          <groupId>sun.jdk</groupId>
+          <artifactId>tools</artifactId>
+          <version>1.5.0</version>
+          <scope>system</scope>
+          <systemPath>${java.home}/../lib/tools.jar</systemPath>
+        </dependency>
       </dependencies>
     </profile>
   </profiles>
@@ -45,7 +52,7 @@
         <artifactId>maven-jar-plugin</artifactId>
         <configuration>
           <archive>
-	    <manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>
+            <manifestFile>src/main/resources/META-INF/MANIFEST.MF</manifestFile>
           </archive>
         </configuration>
       </plugin>
@@ -53,21 +60,33 @@
   </build>
 
   <scm>
-    <connection>scm:svn:http://svn.nuxeo.org/nuxeo/org.nuxeo.build/nuxeo-apt-extensions/trunk</connection>
-    <developerConnection>scm:svn:https://svn.nuxeo.org/nuxeo/org.nuxeo.build/nuxeo-apt-extensions/trunk</developerConnection>
-    <url>http://svn.nuxeo.org/trac/nuxeo/browser/org.nuxeo.build/nuxeo-apt-extensions/trunk</url>
+    <connection>scm:hg:http://hg.nuxeo.org/tools/nuxeo-apt-extensions</connection>
+    <developerConnection>scm:hg:https://hg.nuxeo.org/tools/nuxeo-apt-extensions</developerConnection>
+    <url>http://hg.nuxeo.org/tools/nuxeo-apt-extensions</url>
   </scm>
 
-
-  <distributionManagement>
+  <repositories>
     <repository>
-      <id>nuxeo_release</id>
-      <url>scpexe://tamise.nuxeo.com/home/archiva/repositories/nuxeo_release</url>
+      <id>public</id>
+      <url>http://maven.nuxeo.org/nexus/content/groups/public</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
     </repository>
-    <snapshotRepository>
-      <id>nuxeo_snapshot</id>
-      <url>scpexe://tamise.nuxeo.com/home/archiva/repositories/nuxeo_snapshot</url>
-    </snapshotRepository>
-  </distributionManagement> 				    
+    <repository>
+      <id>public-snapshot</id>
+      <url>http://maven.nuxeo.org/nexus/content/groups/public-snapshot</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <updatePolicy>always</updatePolicy>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
 
 </project>
